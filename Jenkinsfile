@@ -24,7 +24,7 @@ pipeline {
         stage('Login') {
             steps {
                 sh 'echo "Logging"'
-                sh 'echo $DOCKERHUB_CREDENTIALS_PWD | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('Upload image') {
