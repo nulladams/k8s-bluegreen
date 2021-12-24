@@ -9,5 +9,11 @@ pipeline {
                 sh 'echo "Hello world!"'
             }
         }
+        stage('Build') {
+            steps {
+                sh 'echo "Building"'
+                sh 'ls -la'
+            }
+        }
     }
 }
