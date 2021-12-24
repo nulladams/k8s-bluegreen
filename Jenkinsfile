@@ -16,6 +16,7 @@ pipeline {
                 sh """
                     cd blue
                     ls -la
+                    docker build leoadams/blue .
                 """
             }
         }
