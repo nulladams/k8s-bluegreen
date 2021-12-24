@@ -2,6 +2,7 @@ pipeline {
     agent any
     environment {
         CI = 'true'
+        DOCKERHUB_CREDENTIALS = credentials('dockerhub')
     }
     stages {
         stage('Hello') {
@@ -16,14 +17,25 @@ pipeline {
                 sh """
                     cd blue
                     ls -la
-                    docker build -t leoadams/blue .
+                    docker build -t leoadams/blue:latest .
                 """
+            }
+        }
+        stage('Login') {
+            steps {
+                sh 'echo "Logging"'
+                sh 'echo $DOCKERHUB_CREDENTIALS_PWD | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
             }
         }
         stage('Upload image') {
             steps {
                 sh 'echo "Uploading"'
-                sh 'docker push leoadams/blue'
+                sh 'docker push leoadams/blue:latest'
+            }
+        }
+        post {
+            always {
+                sh 'docker logout'
             }
         }
     }
