@@ -13,6 +13,10 @@ pipeline {
             steps {
                 sh 'echo "Building"'
                 sh 'ls -la'
+                sh """
+                    cd blue
+                    ls -la
+                """
             }
         }
     }
