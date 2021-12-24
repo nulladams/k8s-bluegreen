@@ -20,5 +20,11 @@ pipeline {
                 """
             }
         }
+        stage('Upload image') {
+            steps {
+                sh 'echo "Uploading"'
+                sh 'docker push leoadams/blue'
+            }
+        }
     }
 }
