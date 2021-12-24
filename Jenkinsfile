@@ -33,10 +33,10 @@ pipeline {
                 sh 'docker push leoadams/blue:latest'
             }
         }
-        post {
-            always {
-                sh 'docker logout'
-            }
+    }
+    post {
+        always {
+            sh 'docker logout'
         }
     }
 }
