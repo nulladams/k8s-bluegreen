@@ -37,8 +37,8 @@ pipeline {
         stage('Create Infrastructure') {
             agent {
                 docker {
-                    image: amazon/aws-cli
-                    reuseNode: true
+                    image amazon/aws-cli
+                    reuseNode true
                 }
             }
             steps {
