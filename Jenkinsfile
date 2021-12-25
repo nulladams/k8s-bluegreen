@@ -38,11 +38,12 @@ pipeline {
             agent {
                 docker {
                     image 'amazon/aws-cli'
-                    // reuseNode true
+                    reuseNode true
                 }
             }
             steps {
-                sh 'aws --version'
+                sh 'echo "hello aws"'
+                //sh 'aws --version'
             }
         }
     }
