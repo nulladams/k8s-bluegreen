@@ -43,7 +43,7 @@ pipeline {
             }
             steps {
                 sh 'echo "hello aws"'
-                //sh 'aws --version'
+                sh 'aws --version'
             }
         }
     }
