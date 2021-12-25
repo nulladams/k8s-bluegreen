@@ -38,7 +38,7 @@ pipeline {
             agent {
                 docker {
                     image amazon/aws-cli
-                    reuseNode true
+                    // reuseNode true
                 }
             }
             steps {
