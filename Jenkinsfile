@@ -43,9 +43,8 @@ pipeline {
             }
             steps {
                 sh 'echo "hello aws"'
-                sh(script: """
-                    aws --version
-                """, returnStdout: true)
+                sh 'aws --version'
+                sh 'echo teste'
             }
         }
     }
