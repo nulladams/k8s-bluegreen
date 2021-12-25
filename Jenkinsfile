@@ -35,12 +35,12 @@ pipeline {
             }
         }
         stage('Create Infrastructure') {
-            agent {
-                docker {
-                    image 'amazon/aws-cli'
-                    reuseNode true
-                }
-            }
+            // agent {
+            //     docker {
+            //         image 'amazon/aws-cli'
+            //         reuseNode true
+            //     }
+            // }
             steps {
                 sh 'echo "hello aws"'
                 sh 'aws --version'
