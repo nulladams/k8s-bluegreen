@@ -10,6 +10,7 @@ pipeline {
                 sh 'echo "Hello world!"'
             }
         }
+
         stage('Build') {
             steps {
                 sh 'echo "Building"'
@@ -31,6 +32,17 @@ pipeline {
             steps {
                 sh 'echo "Uploading"'
                 sh 'docker push leoadams/blue:latest'
+            }
+        }
+        stage('Create Infrastructure') {
+            agent {
+                docker {
+                    image: amazon/aws-cli
+                    reuseNode: true
+                }
+            }
+            steps {
+                sh 'aws --version'
             }
         }
     }
