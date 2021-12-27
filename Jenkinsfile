@@ -21,6 +21,7 @@ pipeline {
                 sh """
                     cd blue
                     ls -la
+                    docker build -t leoadams/capstone-udacity:${BUILD_NUMBER} .
                     docker build -t leoadams/capstone-udacity:latest .
                 """
             }
@@ -34,6 +35,7 @@ pipeline {
         stage('Upload image') {
             steps {
                 sh 'echo "Uploading"'
+                sh 'docker push leoadams/capstone-udacity:${BUILD_NUMBER}'
                 sh 'docker push leoadams/capstone-udacity:latest'
             }
         }
@@ -59,7 +61,8 @@ pipeline {
                 }
             }
             steps {
-                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh 'cat k8s/deployment.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl apply -f'
+                //sh 'kubectl apply -f k8s/deployment.yaml'
                 sh 'kubectl apply -f k8s/service.yaml'
             }
         }
