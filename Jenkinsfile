@@ -18,7 +18,7 @@ pipeline {
                 sh """
                     cd blue
                     ls -la
-                    docker build -t leoadams/blue:latest .
+                    docker build -t leoadams/capstone-udacity:latest .
                 """
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Upload image') {
             steps {
                 sh 'echo "Uploading"'
-                sh 'docker push leoadams/blue:latest'
+                sh 'docker push leoadams/capstone-udacity:latest'
             }
         }
         stage('Create Infrastructure') {
