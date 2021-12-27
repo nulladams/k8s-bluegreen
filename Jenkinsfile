@@ -45,6 +45,7 @@ pipeline {
                 sh 'echo "hello aws"'
                 sh 'aws --version'
                 sh 'echo teste'
+                sh 'aws ec2 describe-instances'
             }
         }
     }
