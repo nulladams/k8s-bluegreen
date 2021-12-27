@@ -11,7 +11,10 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build blue') {
+            when {
+                branch 'blue'
+            }
             steps {
                 sh 'echo "Building"'
                 sh 'ls -la'
