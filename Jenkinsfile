@@ -48,6 +48,12 @@ pipeline {
                 sh 'aws ec2 describe-instances'
             }
         }
+        stage('Deploy') {
+            steps {
+                sh 'kubectl apply -f k8s/deployment.yaml'
+                sh 'kubectl apply -f k8s/service.yaml'
+            }
+        }
     }
     post {
         always {
