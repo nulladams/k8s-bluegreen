@@ -11,6 +11,19 @@ pipeline {
             }
         }
 
+        stage('Lint green') {
+            when {
+                branch 'green'
+            }
+            steps {
+                sh 'echo "Lint green"'
+                sh """
+                    cd green
+                    hadolint Dockerfile
+                """
+            }
+        }
+
         stage('Build green') {
             when {
                 branch 'green'
