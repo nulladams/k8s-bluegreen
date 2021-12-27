@@ -11,14 +11,14 @@ pipeline {
             }
         }
 
-        stage('Build') {
+        stage('Build green') {
             steps {
                 sh 'echo "Building"'
                 sh 'ls -la'
                 sh """
-                    cd blue
+                    cd green
                     ls -la
-                    docker build -t leoadams/capstone-udacity:latest .
+                    docker build -t leoadams/capstone-udacity:${BUILD_NUMBER} .
                 """
             }
         }
@@ -31,7 +31,7 @@ pipeline {
         stage('Upload image') {
             steps {
                 sh 'echo "Uploading"'
-                sh 'docker push leoadams/capstone-udacity:latest'
+                sh 'docker push leoadams/capstone-udacity:${BUILD_NUMBER}'
             }
         }
         stage('Create Infrastructure') {
