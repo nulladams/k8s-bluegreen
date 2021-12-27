@@ -61,7 +61,7 @@ pipeline {
                 }
             }
             steps {
-                sh 'cat k8s/deployment.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl apply -f'
+                sh 'cat k8s/deployment.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl apply -f -'
                 //sh 'kubectl apply -f k8s/deployment.yaml'
                 sh 'kubectl apply -f k8s/service.yaml'
             }
