@@ -51,7 +51,13 @@ pipeline {
                 sh 'aws ec2 describe-instances'
             }
         }
-        stage('Deploy') {
+        stage('Deploy blue/green') {
+            when {
+                anyOf {
+                    branch 'blue';
+                    branch 'green'
+                }
+            }
             steps {
                 sh 'kubectl apply -f k8s/deployment.yaml'
                 sh 'kubectl apply -f k8s/service.yaml'
