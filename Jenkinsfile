@@ -12,6 +12,9 @@ pipeline {
         }
 
         stage('Build green') {
+            when {
+                branch 'green'
+            }
             steps {
                 sh 'echo "Building"'
                 sh 'ls -la'
@@ -51,7 +54,12 @@ pipeline {
             }
         }
         stage('Deploy blue/green') {
-
+            when {
+                anyOf {
+                    branch 'blue';
+                    branch 'green'
+                }
+            }
             steps {
                 sh 'cat k8s/deployment.yaml | sed s/latest/${BUILD_NUMBER}/g | kubectl apply -f'
                 //sh 'kubectl apply -f k8s/deployment.yaml'
