@@ -10,6 +10,18 @@ pipeline {
                 sh 'echo "Hello world!"'
             }
         }
+        stage('Lint blue') {
+            when {
+                branch 'blue'
+            }
+            steps {
+                sh 'echo "Lint blue"'
+                sh """
+                    cd blue
+                    hadolint Dockerfile
+                """
+            }
+        }
 
         stage('Build blue') {
             when {
